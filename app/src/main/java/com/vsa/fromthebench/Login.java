@@ -34,8 +34,11 @@ public class Login extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        if(!PreferencesManager.getUser(this).isEmpty())
-            Toast.makeText(this, "USUARIO LOGEADO: " + PreferencesManager.getUser(this), Toast.LENGTH_LONG);
+        if(!PreferencesManager.getUser(this).isEmpty()){
+            Intent intent = new Intent(this, Dashboard.class);
+            startActivity(intent);
+        }
+
 
         mEditTextUser = (EditText) findViewById(R.id.user_edittext);
         mEditTextPassword = (EditText) findViewById(R.id.password_edittext);
@@ -45,8 +48,6 @@ public class Login extends Activity implements View.OnClickListener{
 
         mEditTextUser.setText("albertovecina@gmail.com");
         mEditTextPassword.setText("Sm1a1R");
-
-
 
     }
 
@@ -79,6 +80,8 @@ public class Login extends Activity implements View.OnClickListener{
                         if(response.getStatus() == 0){
                             Intent intent = new Intent(Login.this, DownloadService.class);
                             startService(intent);
+                            intent = new Intent(Login.this, Dashboard.class);
+                            startActivity(intent);
                         }
                     }
                 });

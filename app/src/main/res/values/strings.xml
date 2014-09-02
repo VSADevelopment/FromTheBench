@@ -4,10 +4,13 @@
     <string name="app_name">FromTheBench</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
-
     <string name="proceed">CONTINUAR</string>
     <string name="login_success_message">Login realizado satisfactoriamente.\nSus credenciales quedarán almacenadas en el dispositivo.</string>
     <string name="login_unknown_error">Se ha producido un error inesperado durante el proceso.</string>
+    /**** DASHBOARD ****/    <string name="about_me">ACERCA DE MI</string>
+    <string name="procon">PRO/CON</string>
+    <string name="empty_cache">VACIAR CACHÉ</string>
+    <string name="close_session">CERRAR SESIÓN</string>
+    <string name="title_activity_pro_con">ProCon</string>
 
 </resources>

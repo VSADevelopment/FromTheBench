@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="50dp"
+    android:background="@drawable/background_login"
+    tools:context="com.vsa.fromthebench.Dashboard"
+    android:gravity="center_horizontal">
+
+    <Button
+        android:id="@+id/about_me_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/procon_button"
+        android:layout_marginBottom="10dp"
+        android:text="@string/about_me"
+        android:background="@drawable/button_acercademi"
+        style="@style/text_button" />
+
+    <Button
+        android:id="@+id/procon_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/empty_cache_button"
+        android:layout_marginBottom="10dp"
+        android:text="@string/procon"
+        android:background="@drawable/button_procon"
+        style="@style/text_button" />
+
+    <Button
+        android:id="@+id/empty_cache_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/close_session_button"
+        android:layout_marginBottom="10dp"
+        android:text="@string/empty_cache"
+        android:background="@drawable/button_cache"
+        style="@style/text_button" />
+
+    <Button
+        android:id="@+id/close_session_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/close_session"
+        android:background="@drawable/button_cerrarsesion"
+        android:layout_alignParentBottom="true"
+        style="@style/text_button" />
+
+</RelativeLayout>
