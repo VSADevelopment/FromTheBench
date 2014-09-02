@@ -12,5 +12,7 @@
     <string name="empty_cache">VACIAR CACHÉ</string>
     <string name="close_session">CERRAR SESIÓN</string>
     <string name="title_activity_pro_con">ProCon</string>
+    <string name="alert_cache_deleted">Los datos de la aplicación han sido borrados.</string>
+    <string name="title_activity_about_me">AboutMe</string>
 
 </resources>

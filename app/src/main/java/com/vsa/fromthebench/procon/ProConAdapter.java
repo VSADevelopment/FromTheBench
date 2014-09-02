@@ -1,4 +1,4 @@
-package com.vsa.fromthebench.procon.view;
+package com.vsa.fromthebench.procon;
 
 import android.content.Context;
 import android.view.LayoutInflater;

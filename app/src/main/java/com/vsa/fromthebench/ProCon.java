@@ -2,22 +2,18 @@ package com.vsa.fromthebench;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.vsa.fromthebench.procon.Consumer;
 import com.vsa.fromthebench.procon.Producer;
 import com.vsa.fromthebench.procon.interfaces.ConsumerInterface;
 import com.vsa.fromthebench.procon.interfaces.ProducerInterface;
-import com.vsa.fromthebench.procon.view.ProConAdapter;
+import com.vsa.fromthebench.procon.ProConAdapter;
 
 import java.util.Stack;
 
 
 public class ProCon extends Activity implements ProducerInterface, ConsumerInterface {
-
-    private LinearLayout mLayoutProducer;
-    private LinearLayout mLayoutConsumer;
 
     private ListView mListViewProducer;
     private ListView mListViewConsumer;
@@ -25,7 +21,7 @@ public class ProCon extends Activity implements ProducerInterface, ConsumerInter
     private ProConAdapter mConsumerAdapter;
 
     private volatile Stack<Integer> mProducerQueue = new Stack<Integer>();
-    private Stack<Integer> mConsumerQueue = new Stack<Integer>();
+    private volatile Stack<Integer> mConsumerQueue = new Stack<Integer>();
 
     private Producer mProducer = new Producer(this);
     private Consumer mConsumer = new Consumer(this);
@@ -34,9 +30,6 @@ public class ProCon extends Activity implements ProducerInterface, ConsumerInter
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pro_con);
-
-        mLayoutProducer = (LinearLayout) findViewById(R.id.producer_layout);
-        mLayoutConsumer = (LinearLayout) findViewById(R.id.consumer_layout);
 
         mListViewProducer = (ListView) findViewById(R.id.producer_listview);
         mListViewConsumer = (ListView) findViewById(R.id.consumer_listview);
@@ -47,15 +40,20 @@ public class ProCon extends Activity implements ProducerInterface, ConsumerInter
         mListViewProducer.setAdapter(mProducerAdapter);
         mListViewConsumer.setAdapter(mConsumerAdapter);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         mProducer.start();
         mConsumer.start();
-
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         mProducer.interrupt();
+        mConsumer.interrupt();
     }
 
 
@@ -86,6 +84,11 @@ public class ProCon extends Activity implements ProducerInterface, ConsumerInter
                     mProducerAdapter.notifyDataSetChanged();
                 }
             });
+        } else{
+            if(mConsumerQueue.size() == 10){
+                mProducer.interrupt();
+                mConsumer.interrupt();
+            }
         }
     }
 }

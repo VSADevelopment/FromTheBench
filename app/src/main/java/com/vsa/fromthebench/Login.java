@@ -16,6 +16,7 @@ import com.vsa.fromthebench.services.DownloadService;
 import com.vsa.fromthebench.services.LoginAsyncTask;
 import com.vsa.fromthebench.utils.DialogManager;
 import com.vsa.fromthebench.utils.PreferencesManager;
+import com.vsa.fromthebench.view.CustomProgressDialog;
 
 import java.util.concurrent.ExecutionException;
 
@@ -35,7 +36,9 @@ public class Login extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_login);
 
         if(!PreferencesManager.getUser(this).isEmpty()){
-            Intent intent = new Intent(this, Dashboard.class);
+            Intent intent = new Intent(this, DownloadService.class);
+            startService(intent);
+            intent = new Intent(Login.this, Dashboard.class);
             startActivity(intent);
         }
 

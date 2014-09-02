@@ -30,6 +30,14 @@ public class PreferencesManager {
         return mSharedPreferences.getString(key, "");
     }
 
+    public static void delete(Context context, String... keys){
+        getSharedPreferences(context);
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        for(String key:keys)
+            editor.remove(key);
+        editor.commit();
+    }
+
     public static void storeCredentials(Context context, String user, String password){
         getSharedPreferences(context);
         SharedPreferences.Editor editor = mSharedPreferences.edit();

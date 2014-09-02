@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.vsa.fromthebench.utils.HTTPUtils;
+import com.vsa.fromthebench.view.CustomProgressDialog;
 
 /**
  * Created by Alberto on 01/09/2014.
@@ -21,7 +22,7 @@ public class LoginAsyncTask extends AsyncTask<Void, Void, String> {
     private String mPassword;
     private String mAction = "http://ftbsports.com/android/api/login.php?user=[user]&password=[password]";
 
-    ProgressDialog mProgressDialog;
+    CustomProgressDialog mProgressDialog;
 
     public LoginAsyncTask (Context context, String user, String password){
 
@@ -33,8 +34,9 @@ public class LoginAsyncTask extends AsyncTask<Void, Void, String> {
         mAction = mAction.replace("[password]", mPassword);
         Log.d(TAG, "ACTION: " + mAction);
 
-        mProgressDialog = ProgressDialog.show(mContext, "",
-                "Loading. Please wait...", true);
+        mProgressDialog = new CustomProgressDialog(context);
+        mProgressDialog.show();
+
     }
 
 
