@@ -12,13 +12,22 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:padding="30dp"
         android:gravity="center_horizontal" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pro_con_list"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            style="@style/text_button"/>
         <ListView
             android:id="@+id/producer_listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:divider="@android:color/transparent"/>
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10dp" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/consumer_layout"
@@ -26,13 +35,22 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:padding="30dp"
         android:gravity="center_horizontal" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/con_list"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:textStyle="bold" />
         <ListView
             android:id="@+id/consumer_listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:divider="@android:color/transparent"/>
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10dp" />
     </LinearLayout>
 
 </LinearLayout>

@@ -8,6 +8,7 @@
     <style name="input">
         <!-- Customize your theme here. -->
         <item name="android:background">@drawable/imput_form</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="text_button">

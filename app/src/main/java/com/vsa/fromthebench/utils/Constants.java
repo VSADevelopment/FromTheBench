@@ -5,6 +5,8 @@ package com.vsa.fromthebench.utils;
  */
 public class Constants {
 
+    public static final String CV_FILE = "micv.pdf";
+
     public static final String APPLICATION_FOLDER = "/mnt/sdcard/FromTheBench/";
 
 }

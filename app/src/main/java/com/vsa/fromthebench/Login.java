@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.vsa.fromthebench.beans.LoginResponseBean;
 import com.vsa.fromthebench.services.DownloadService;
 import com.vsa.fromthebench.services.LoginAsyncTask;
+import com.vsa.fromthebench.utils.DeviceInfo;
 import com.vsa.fromthebench.utils.DialogManager;
 import com.vsa.fromthebench.utils.PreferencesManager;
 import com.vsa.fromthebench.view.CustomProgressDialog;
@@ -94,9 +95,13 @@ public class Login extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         if(view == mButtonProceed){
-            LoginAsyncTask mLoginAsyncTask = new LoginAsyncTask(this, mEditTextUser.getText().toString(), mEditTextPassword.getText().toString());
-            mLoginAsyncTask.setOnLoginCompletedListener(mOnLoginCompletedListener);
-            mLoginAsyncTask.execute();
+            if(DeviceInfo.isConnectionAvailable(this)) {
+                LoginAsyncTask mLoginAsyncTask = new LoginAsyncTask(this, mEditTextUser.getText().toString(), mEditTextPassword.getText().toString());
+                mLoginAsyncTask.setOnLoginCompletedListener(mOnLoginCompletedListener);
+                mLoginAsyncTask.execute();
+            }else{
+                DialogManager.createDialog(this, getString(R.string.connection_warning)).show();
+            }
         }
     }
 }

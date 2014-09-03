@@ -15,7 +15,7 @@ import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.vsa.fromthebench.utils.Constants;
 import com.vsa.fromthebench.utils.DialogManager;
-import com.vsa.fromthebench.utils.DisplayInfo;
+import com.vsa.fromthebench.utils.DeviceInfo;
 import com.vsa.fromthebench.utils.PreferencesManager;
 
 import java.io.File;
@@ -71,8 +71,12 @@ public class Dashboard extends Activity implements View.OnClickListener{
 
         if(view == mButtonProCon){
 
-            intent = new Intent(this, ProCon.class);
-            startActivity(intent);
+            if(DeviceInfo.isConnectionAvailable(this)) {
+                intent = new Intent(this, ProCon.class);
+                startActivity(intent);
+            }else{
+                DialogManager.createDialog(this, getString(R.string.connection_warning)).show();
+            }
 
         }
 
@@ -152,7 +156,7 @@ public class Dashboard extends Activity implements View.OnClickListener{
             @Override
             public boolean onPreDraw() {
 
-                Point screenDimensions = DisplayInfo.getDimensions(Dashboard.this);
+                Point screenDimensions = DeviceInfo.getDisplaySize(Dashboard.this);
                 Log.d(TAG, "SCREEN SIZE: " + screenDimensions.x + " IMAGE WIDTH: " + mImageViewRight.getWidth());
                 mImageViewRight.getViewTreeObserver().removeOnPreDrawListener(this);
                 ObjectAnimator animationRight = ObjectAnimator.ofFloat(mImageViewRight, "translationX", mImageViewRight.getWidth(), 0);

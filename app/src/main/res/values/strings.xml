@@ -7,6 +7,8 @@
     <string name="proceed">CONTINUAR</string>
     <string name="login_success_message">Login realizado satisfactoriamente.\nSus credenciales quedarán almacenadas en el dispositivo.</string>
     <string name="login_unknown_error">Se ha producido un error inesperado durante el proceso.</string>
+    <string name="connection_warning">Es necesario tener acceso a internet para continuar.</string>
+
     /**** DASHBOARD ****/    <string name="about_me">ACERCA DE MI</string>
     <string name="procon">PRO/CON</string>
     <string name="empty_cache">VACIAR CACHÉ</string>
@@ -14,5 +16,23 @@
     <string name="title_activity_pro_con">ProCon</string>
     <string name="alert_cache_deleted">Los datos de la aplicación han sido borrados.</string>
     <string name="title_activity_about_me">AboutMe</string>
+
+    /**** PROCON ****/
+    <string name="pro_con_list">LISTA DE PRODUCTOR/\nCONSUMIDOR</string>
+    <string name="con_list">LISTA DE NÚMEROS\nCONSUMIDOS</string>
+
+    /**** ABOUT ME ****/
+    <string name="name_label">NOMBRE:</string>
+    <string name="email_label">EMAIL:</string>
+    <string name="phone_label">TELÉFONO:</string>
+    <string name="address_label">DIRECCIÓN:</string>
+    <string name="name">Alberto Vecina Sánchez</string>
+    <string name="email">albertovecina@gmail.com</string>
+    <string name="phone">653033249</string>
+    <string name="address">Calle de la Oliva Nº18 Piso:2ºC, Las Rozas (MADRID)</string>
+    <string name="view_cv">VER CURRICULUM\n(Necesitarás un visor de pdf instalado)</string>
+
+
+
 
 </resources>
