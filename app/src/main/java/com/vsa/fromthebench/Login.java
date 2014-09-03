@@ -29,6 +29,43 @@ public class Login extends Activity implements View.OnClickListener{
     private EditText mEditTextPassword;
     private Button mButtonProceed;
 
+    private LoginAsyncTask.OnLoginCompletedListener mOnLoginCompletedListener = new LoginAsyncTask.OnLoginCompletedListener() {
+        @Override
+        public void onLoginCompleted(String response) {
+
+            final LoginResponseBean loginResponseBean = new LoginResponseBean(response);
+            Log.d(TAG, "RESPONSE: " + response);
+
+            String dialogMessage = "";
+            switch (loginResponseBean.getStatus()){
+                case 0:
+                    dialogMessage = getString(R.string.login_success_message);
+                    PreferencesManager.storeCredentials(Login.this, mEditTextUser.getText().toString(), mEditTextPassword.getText().toString());
+                    break;
+                case -2:
+                    dialogMessage = getString(R.string.login_unknown_error);
+                    break;
+                default:
+                    dialogMessage = loginResponseBean.getMessage();
+            }
+
+            Dialog dialog = DialogManager.createDialog(Login.this, dialogMessage);
+            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialogInterface) {
+                    if(loginResponseBean.getStatus() == 0){
+                        Intent intent = new Intent(Login.this, DownloadService.class);
+                        startService(intent);
+                        intent = new Intent(Login.this, Dashboard.class);
+                        startActivity(intent);
+                    }
+                }
+            });
+            dialog.show();
+
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -58,43 +95,8 @@ public class Login extends Activity implements View.OnClickListener{
     public void onClick(View view) {
         if(view == mButtonProceed){
             LoginAsyncTask mLoginAsyncTask = new LoginAsyncTask(this, mEditTextUser.getText().toString(), mEditTextPassword.getText().toString());
+            mLoginAsyncTask.setOnLoginCompletedListener(mOnLoginCompletedListener);
             mLoginAsyncTask.execute();
-            try {
-                final LoginResponseBean response = new LoginResponseBean(mLoginAsyncTask.get());
-                Log.d(TAG, "RESPONSE: " + response);
-
-                String dialogMessage = "";
-                switch (response.getStatus()){
-                    case 0:
-                        dialogMessage = getString(R.string.login_success_message);
-                        PreferencesManager.storeCredentials(this, mEditTextUser.getText().toString(), mEditTextPassword.getText().toString());
-                        break;
-                    case -2:
-                        dialogMessage = getString(R.string.login_unknown_error);
-                        break;
-                    default:
-                        dialogMessage = response.getMessage();
-                }
-
-                Dialog dialog = DialogManager.createDialog(this, dialogMessage);
-                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialogInterface) {
-                        if(response.getStatus() == 0){
-                            Intent intent = new Intent(Login.this, DownloadService.class);
-                            startService(intent);
-                            intent = new Intent(Login.this, Dashboard.class);
-                            startActivity(intent);
-                        }
-                    }
-                });
-                dialog.show();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-
         }
     }
 }

@@ -22,7 +22,9 @@ public class LoginAsyncTask extends AsyncTask<Void, Void, String> {
     private String mPassword;
     private String mAction = "http://ftbsports.com/android/api/login.php?user=[user]&password=[password]";
 
-    CustomProgressDialog mProgressDialog;
+    private OnLoginCompletedListener mOnLoginCompletedListener;
+
+    private CustomProgressDialog mProgressDialog;
 
     public LoginAsyncTask (Context context, String user, String password){
 
@@ -56,6 +58,17 @@ public class LoginAsyncTask extends AsyncTask<Void, Void, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         mProgressDialog.dismiss();
+        if(mOnLoginCompletedListener != null)
+            mOnLoginCompletedListener.onLoginCompleted(s);
         Log.d(TAG, "RESULT: " + s);
     }
+
+    public void setOnLoginCompletedListener(OnLoginCompletedListener onLoginCompletedListener){
+        mOnLoginCompletedListener = onLoginCompletedListener;
+    }
+
+    public interface OnLoginCompletedListener{
+        public void onLoginCompleted(String response);
+    }
+
 }

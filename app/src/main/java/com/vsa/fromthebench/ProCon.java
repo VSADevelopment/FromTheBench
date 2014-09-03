@@ -34,9 +34,6 @@ public class ProCon extends Activity implements ProducerInterface, ConsumerInter
         mListViewProducer = (ListView) findViewById(R.id.producer_listview);
         mListViewConsumer = (ListView) findViewById(R.id.consumer_listview);
 
-        mProducerAdapter = new ProConAdapter(this, mProducerQueue, ProConAdapter.ProConAdapterStyle.PRODUCER);
-        mConsumerAdapter = new ProConAdapter(this, mConsumerQueue, ProConAdapter.ProConAdapterStyle.CONSUMER);
-
         mListViewProducer.setAdapter(mProducerAdapter);
         mListViewConsumer.setAdapter(mConsumerAdapter);
 
@@ -62,11 +59,15 @@ public class ProCon extends Activity implements ProducerInterface, ConsumerInter
         if(mProducerQueue.size()>0 && mConsumerQueue.size()<10) {
             int num = mProducerQueue.pop();
             mConsumerQueue.push(num);
+            mProducerAdapter = new ProConAdapter(ProCon.this, mProducerQueue, ProConAdapter.ProConAdapterStyle.PRODUCER);
+            mConsumerAdapter = new ProConAdapter(ProCon.this, mConsumerQueue, ProConAdapter.ProConAdapterStyle.CONSUMER);
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    mProducerAdapter.notifyDataSetChanged();
-                    mConsumerAdapter.notifyDataSetChanged();
+                    //Why don´t you use notifyDataSetChanged method motherfucker? http://stackoverflow.com/questions/3132021/android-listview-illegalstateexception-the-content-of-the-adapter-has-changed
+                    mListViewProducer.setAdapter(mProducerAdapter);
+                    mListViewConsumer.setAdapter(mConsumerAdapter);
+
                 }
             });
             return num;
@@ -78,10 +79,12 @@ public class ProCon extends Activity implements ProducerInterface, ConsumerInter
     public synchronized void produce(Integer num) {
         if(mProducerQueue.size()<10) {
             mProducerQueue.push(num);
+            mProducerAdapter = new ProConAdapter(ProCon.this, mProducerQueue, ProConAdapter.ProConAdapterStyle.PRODUCER);
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    mProducerAdapter.notifyDataSetChanged();
+                    //Why don´t you use notifyDataSetChanged method motherfucker? http://stackoverflow.com/questions/3132021/android-listview-illegalstateexception-the-content-of-the-adapter-has-changed
+                    mListViewProducer.setAdapter(mProducerAdapter);
                 }
             });
         } else{
