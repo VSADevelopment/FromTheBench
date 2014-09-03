@@ -16,6 +16,7 @@
 
     <EditText
         android:id="@+id/user_edittext"
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/password_edittext"
@@ -23,6 +24,7 @@
 
     <EditText
         android:id="@id/password_edittext"
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/proceed_button"

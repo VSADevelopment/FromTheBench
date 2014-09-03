@@ -11,28 +11,28 @@
         android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" >
+        android:layout_weight="1"
+        android:gravity="center_horizontal" >
         <ListView
             android:id="@+id/producer_listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="10dp" />
+            android:divider="@android:color/transparent"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/consumer_layout"
         android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" >
+        android:layout_weight="1"
+        android:gravity="center_horizontal" >
         <ListView
             android:id="@+id/consumer_listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="10dp" />
+            android:divider="@android:color/transparent"/>
     </LinearLayout>
 
 </LinearLayout>

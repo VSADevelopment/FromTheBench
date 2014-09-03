@@ -64,7 +64,7 @@ public class ProCon extends Activity implements ProducerInterface, ConsumerInter
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    //Why don´t you use notifyDataSetChanged method motherfucker? http://stackoverflow.com/questions/3132021/android-listview-illegalstateexception-the-content-of-the-adapter-has-changed
+                    //Why didn't I use the notifyDataSetChanged method? http://stackoverflow.com/questions/3132021/android-listview-illegalstateexception-the-content-of-the-adapter-has-changed
                     mListViewProducer.setAdapter(mProducerAdapter);
                     mListViewConsumer.setAdapter(mConsumerAdapter);
 
@@ -83,7 +83,7 @@ public class ProCon extends Activity implements ProducerInterface, ConsumerInter
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    //Why don´t you use notifyDataSetChanged method motherfucker? http://stackoverflow.com/questions/3132021/android-listview-illegalstateexception-the-content-of-the-adapter-has-changed
+                    //Why didn't I use the notifyDataSetChanged method? http://stackoverflow.com/questions/3132021/android-listview-illegalstateexception-the-content-of-the-adapter-has-changed
                     mListViewProducer.setAdapter(mProducerAdapter);
                 }
             });
